@@ -35,5 +35,7 @@
         awesomeThing.rank = Math.random();
       });
     }
+	
+	
   }
 })();

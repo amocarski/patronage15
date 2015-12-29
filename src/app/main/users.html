@@ -16,7 +16,7 @@
 
   <main class="mdl-layout__content">
     <div class="page-content">
-      <div class="acme-card-wide mdl-card mdl-shadow--2dp">
+     <!-- <div class="acme-card-wide mdl-card mdl-shadow--2dp">
         <div class="mdl-card__title">
           <h2 class="mdl-card__title-text">'Allo, 'Allo!</h2>
         </div>
@@ -33,36 +33,43 @@
             <i class="material-icons">share</i>
           </button>
         </div>
-      </div>
-	  
-      <div class="mdl-grid">
+      </div>-->
 
-        <div class="mdl-cell mdl-cell--4-col" ng-repeat="awesomeThing in main.awesomeThings | orderBy:'rank'">
+      <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--12-col">
+          <form>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <input class="mdl-textfield__input" type="text" id="sample1" pattern="-?[0-9]*(\.[0-9]+)?" ng-model="search" ng-change="change()" >
+              <label class="mdl-textfield__label" for="sample1">ID usera od którego chcesz zacząć</label>
+              <span class="mdl-textfield__error">Pole musi być cyfrą!</span>
+            </div>
+          </form>     
+        </div>
+
+        <div class="mdl-cell mdl-cell--4-col" ng-repeat="user in details" >
           <div class="acme-card-square mdl-card mdl-shadow--2dp">
             <div class="mdl-card__title">
-              <h2 class="mdl-card__title-text">{{ awesomeThing.title }}</h2> 
+              <h2 class="mdl-card__title-text">{{ user.login }}</h2>
             </div>
-           <div class="mdl-card__media">
-             <img ng-src="assets/images/{{ awesomeThing.logo }}" alt="{{ awesomeThing.title }}"> 
+            <div class="mdl-card__media">
+              <img ng-src="{{ user.avatar_url }}" alt="{{ user.avatar_url }}">
             </div>
-            <div class="mdl-card__supporting-text">
-               {{ awesomeThing.description }}
-            </div>
+           <!--  <div class="mdl-card__supporting-text">
+            </div> -->
             <div class="mdl-card__actions mdl-card--border">
-             <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" ng-href="{{ awesomeThing.url }}">
-                Website
-              </a>
+               <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" ui-sref="profile({login: user.login})" >
+                Profil 
+              </a> 
             </div>
           </div>
         </div>
-	
 
-      </div>
-	  
+      </div><!-- grid -->
+
     </div>
   </main>
 
-<!--   <footer class="mdl-mini-footer">
+  <!-- <footer class="mdl-mini-footer">
     <div class="mdl-mini-footer__right-section">
       <div class="mdl-logo">
         With ♥ thanks to the contributions of<acme-malarkey extra-values="['Yeoman', 'Gulp', 'Angular']"></acme-malarkey>

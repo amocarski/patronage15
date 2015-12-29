@@ -58,6 +58,7 @@
       }
     ];
 
+	
     this.getTec = getTec;
 
     function getTec() {
