@@ -1,80 +1,24 @@
-<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+<div class="page-content">
 
-  <header class="mdl-layout__header">
-    <acme-navbar creation-date="main.creationDate"></acme-navbar>
-  </header>
-
-  <div class="mdl-layout__drawer">
-    <span class="mdl-layout-title">Title</span>
-    <nav class="mdl-navigation">
-      <a class="mdl-navigation__link" href="">Link</a>
-      <a class="mdl-navigation__link" href="">Link</a>
-      <a class="mdl-navigation__link" href="">Link</a>
-      <a class="mdl-navigation__link" href="">Link</a>
-    </nav>
-  </div>
-
-  <main class="mdl-layout__content">
-    <div class="page-content">
-     <!-- <div class="acme-card-wide mdl-card mdl-shadow--2dp">
-        <div class="mdl-card__title">
-          <h2 class="mdl-card__title-text">'Allo, 'Allo!</h2>
+  <div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--12-col">
+      <form>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <input class="mdl-textfield__input" type="text" id="sample1" pattern="-?[0-9]*(\.[0-9]+)?" ng-model="user.search" ng-change="user.change()" >
+          <label class="mdl-textfield__label" for="sample1">ID detailsa od którego chcesz zacząć</label>
+          <span class="mdl-textfield__error">Pole musi być cyfrą!</span>
         </div>
-        <div class="mdl-card__supporting-text">
-          Always a pleasure scaffolding your apps.
-        </div>
-        <div class="mdl-card__actions mdl-card--border">
-          <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-            Splendid Toastr
-          </a>
-        </div>
-        <div class="mdl-card__menu">
-          <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-            <i class="material-icons">share</i>
-          </button>
-        </div>
-      </div>-->
-
-      <div class="mdl-grid">
-        <div class="mdl-cell mdl-cell--12-col">
-          <form>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <input class="mdl-textfield__input" type="text" id="sample1" pattern="-?[0-9]*(\.[0-9]+)?" ng-model="search" ng-change="change()" >
-              <label class="mdl-textfield__label" for="sample1">ID usera od którego chcesz zacząć</label>
-              <span class="mdl-textfield__error">Pole musi być cyfrą!</span>
-            </div>
-          </form>     
-        </div>
-
-        <div class="mdl-cell mdl-cell--4-col" ng-repeat="user in details" >
-          <div class="acme-card-square mdl-card mdl-shadow--2dp">
-            <div class="mdl-card__title">
-              <h2 class="mdl-card__title-text">{{ user.login }}</h2>
-            </div>
-            <div class="mdl-card__media">
-              <img ng-src="{{ user.avatar_url }}" alt="{{ user.avatar_url }}">
-            </div>
-           <!--  <div class="mdl-card__supporting-text">
-            </div> -->
-            <div class="mdl-card__actions mdl-card--border">
-               <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" ui-sref="profile({login: user.login})" >
-                Profil 
-              </a> 
-            </div>
-          </div>
-        </div>
-
-      </div><!-- grid -->
-
+      </form>
     </div>
-  </main>
 
-  <!-- <footer class="mdl-mini-footer">
-    <div class="mdl-mini-footer__right-section">
-      <div class="mdl-logo">
-        With ♥ thanks to the contributions of<acme-malarkey extra-values="['Yeoman', 'Gulp', 'Angular']"></acme-malarkey>
+    <div class="mdl-cell mdl-cell--4-col" ng-repeat="details in user.details" >
+      <div class="demo-card-image mdl-card mdl-shadow--2dp" style="background: url('{{ details.avatar_url }}') center / cover;">
+        <div class="mdl-card__title mdl-card--expand"></div>
+        <div class="mdl-card__actions" >
+          <span class="demo-card-image__filename" ><a ui-sref="main.profile({login: details.login})">{{ details.login }}</a></span>
+        </div>
       </div>
     </div>
-  </footer> -->
+  </div>
 
 </div>

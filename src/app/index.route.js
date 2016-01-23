@@ -8,23 +8,32 @@
   /** @ngInject */
   function routerConfig($stateProvider, $urlRouterProvider) {
     $stateProvider
-      .state('home', {
-        url: '/',
+      .state('main', {
+        url: '',
         templateUrl: 'app/main/main.html',
+        controller: 'MainController',
+        controllerAs: 'main',
+        abstract: true
+      })
+      .state('main.home', {
+        url: '/',
+        templateUrl: 'app/main/home.html',
         controller: 'MainController',
         controllerAs: 'main'
       })
-      .state('user', {
+      .state('main.users', {
         url: '/users',
-        templateUrl: 'app/main/users.html', 
-        controller: 'MainCtrl'
+        templateUrl: 'app/main/users.html',
+        controller: 'UserController',
+        controllerAs: 'user'
       })
-      .state('profile', {
+      .state('main.profile', {
         url: '/users/:login',
-        templateUrl: 'app/main/userprofile.html', 
-        controller: 'ProfilCtrl'
+        templateUrl: 'app/main/userprofile.html',
+        controller: 'ProfileController',
+        controllerAs: 'profile'
       })
-      .state('about', {
+      .state('main.about', {
         url: '/about',
         templateUrl: 'app/main/about.html'
       });

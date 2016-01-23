@@ -96,6 +96,40 @@ main {
   }
 }
 
+.demo-card-image{
+  &.mdl-card {
+    width: 100%;
+    height: 350px;
+  }
+  > .mdl-card__actions {
+    height: 52px;
+    padding: 16px;
+    background: rgba(0, 0, 0, 0.2);
+  }
+  .demo-card-image__filename {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 500;
+  }
+  .demo-card-image__filename a{
+    color: #fff;
+  }
+}
+
+.demo-card-wide{
+  &.mdl-card {
+    width: 512px;
+  }
+  > .mdl-card__title {
+    color: #fff;
+    height: 176px;
+    background: url('http://2.bp.blogspot.com/-nC8nDDnRBig/ToWJk5c1dnI/AAAAAAAAAkI/a121vj_QB_Q/s1600/Landscape-national-geographic.jpg') center / cover;
+  }
+  > .mdl-card__menu {
+    color: #fff;
+  }
+}
+
 /**
  *  Do not remove the comment below. It's the markers used by gulp-inject to inject
  *  all your sass files automatically

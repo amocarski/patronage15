@@ -2,44 +2,51 @@
 'use strict';
 
   angular
-    .module('projekt')
-	.controller('MainCtrl', function($scope, $http) {
-	    var pendingTask;
+  .module('projekt')
+  .controller('UserController', UserController)
+  .factory('ProfilService', function($http) {
+     return {
+       getProfile: function(login, callback) {
+         $http.get('https://api.github.com/users/' + login).success(callback);
+      }
+     }
+  })
+  .controller('ProfileController', function($stateParams, ProfilService) {
+    var vm = this;
+    vm.details = [];
+    ProfilService.getProfile($stateParams.login, function(data) {
+       vm.details = data;
+    });
+  });
 
-	    if ($scope.search === undefined) {
-	      fetch();
-	    }
+  function UserController($http, $timeout) {
+    var pendingTask;
+    var vm = this;
+    vm.details = [];
+    vm.select = select;
+    vm.change = change;
 
-	    $scope.change = function() {
-	      if (pendingTask) {
-	        clearTimeout(pendingTask);
-	      }
-	      pendingTask = setTimeout(fetch, 800);
-	    };
+    if (angular.isUndefined(vm.search)) {
+      fetch();
+    }
 
-	    function fetch() {
-	      $http.get('https://api.github.com/users?since=' + $scope.search)
-	        .success(function(data) {
-	          $scope.details = data;
-	        });
-	    }
+    function change() {
+      if (pendingTask) {
+        clearTimeout(pendingTask);
+      }
+      pendingTask = $timeout(fetch, 800);
+    }
 
-	    $scope.select = function() {
-	      this.setSelectionRange(0, this.value.length);
-	    }
-	})
-	.factory('profilService', function($http) {
-	   return {
-	     getProfile: function(login, callback) {
-	       $http.get('https://api.github.com/users/' + login).success(callback);
-	    }
-	   }
-	})
-	.controller('ProfilCtrl', function($scope, $stateParams, profilService) {
-	  profilService.getProfile($stateParams.login, function(data, status) {
-	     $scope.profile = data;
-	  });
-	}); 
+    function fetch() {
+      $http.get('https://api.github.com/users?since=' + vm.search)
+        .success(function(data) {
+          vm.details = data;
+        });
+    }
+
+    function select() {
+      vm.setSelectionRange(0, vm.value.length);
+    }
+  }
 
 })();
-
