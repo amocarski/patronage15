@@ -3,21 +3,7 @@
 
   angular
   .module('projekt')
-  .controller('UserController', UserController)
-  .factory('ProfilService', function($http) {
-     return {
-       getProfile: function(login, callback) {
-         $http.get('https://api.github.com/users/' + login).success(callback);
-      }
-     }
-  })
-  .controller('ProfileController', function($stateParams, ProfilService) {
-    var vm = this;
-    vm.details = [];
-    ProfilService.getProfile($stateParams.login, function(data) {
-       vm.details = data;
-    });
-  });
+  .controller('UserController', UserController);
 
   function UserController($http, $timeout) {
     var pendingTask;

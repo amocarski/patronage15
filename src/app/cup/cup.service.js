@@ -1,31 +1,33 @@
 (function(){
-'use strict';
+	'use strict';
 
-angular
-		.module('cup')
-		.service('CupService', CupService);
-		
-		function CupService(){
-			this.isEmpty = isEmpty;
-			this.fill = fill;
-			this.drink = drink;
+	angular
+	.module('cup')
+	.service('CupService', CupService);
 
-			var empty = true;
+	function CupService(){
+		this.isEmpty = isEmpty;
+		this.fill = fill;
+		this.drink = drink;
 
-			function isEmpty(){
-				return empty;
-			};
-			function fill(){
-				if(!empty){
-					throw new Error('overflow');
-				}
-				empty = false;
+		var empty = true;
+
+		function isEmpty(){
+			return empty;
+		}
+
+    function fill(){
+			if(!empty){
+				throw new Error('overflow');
+			}
+			empty = false;
 				//this.isEmpty = false;
-			};
+		}
 
-		 	function drink(){
+			function drink(){
 				empty = true;
 				//this.isEmpty = true;
-			};
-		}
+			}
+	}
+
 })();
